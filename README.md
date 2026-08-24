@@ -2,8 +2,7 @@
 
 A complaint lifecycle, notice board and reporting platform for residential societies. Residents raise maintenance complaints with photos and track them to resolution; the management committee triages them through a clear workflow with priorities, overdue detection and a permanent audit trail.
 
-<!-- Replace with the live URL after deploying -->
-**Live demo:** _to be added after deployment_ · **Demo credentials:** [below](#demo-credentials)
+**Live demo:** [society-maintenance-tracker-two-omega.vercel.app](https://society-maintenance-tracker-two-omega.vercel.app) · **Demo credentials:** [below](#demo-credentials)
 
 ---
 
