@@ -73,7 +73,23 @@ Everyone stays informed: residents are emailed when their complaint's status cha
 | **Notice board** | Pinned important notices, then chronological |
 | **Email log** | Every notification generated, delivered or failed, with reasons |
 
-> Screenshots: add `docs/screenshots/*.png` and reference them here before submitting.
+### Screenshots
+
+| Admin overview | Complaint detail |
+|---|---|
+| ![Admin overview](docs/screenshots/01-admin-overview.png) | ![Complaint detail](docs/screenshots/02-complaint-detail-admin.png) |
+
+| Resident dashboard | Dark mode |
+|---|---|
+| ![Resident dashboard](docs/screenshots/03-resident-dashboard.png) | ![Dark mode](docs/screenshots/04-admin-overview-dark.png) |
+
+| Notice board | Settings — live overdue preview |
+|---|---|
+| ![Notice board](docs/screenshots/05-notice-board.png) | ![Settings](docs/screenshots/06-settings.png) |
+
+| Mobile — tables become cards |
+|---|
+| <img src="docs/screenshots/07-mobile-complaints.png" width="320" alt="Mobile complaint list"> |
 
 ---
 
