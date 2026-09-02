@@ -47,6 +47,12 @@ export interface RateLimitRule {
 export const RATE_LIMITS = {
   /** Credential stuffing is the threat; keep this tight. */
   login: { limit: 8, windowSeconds: 300 },
+  /**
+   * Guards the same bcrypt comparison as login, against a signed-in caller
+   * instead of an IP — a stolen session should not double as an unlimited
+   * oracle for guessing the account's current password.
+   */
+  changePassword: { limit: 8, windowSeconds: 300 },
   /** Registration spam. */
   register: { limit: 5, windowSeconds: 3600 },
   /** Signature issuance — prevents using us as a free Cloudinary proxy. */
