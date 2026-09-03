@@ -1,6 +1,7 @@
 import { updateProfileSchema } from '@/lib/validation';
 import { requireUser } from '@/server/auth/guards';
 import { apiHandler, ok, parseJsonBody } from '@/server/http';
+import { RATE_LIMITS, consume } from '@/server/rate-limit';
 import { updateProfile } from '@/server/services/auth.service';
 
 /**
@@ -11,6 +12,8 @@ import { updateProfile } from '@/server/services/auth.service';
  */
 export const PATCH = apiHandler(async (request) => {
   const user = await requireUser();
+  consume(`profile:${user.id}`, RATE_LIMITS.write);
+
   const input = await parseJsonBody(request, updateProfileSchema);
   return ok({ user: await updateProfile(user.id, input) });
 });
