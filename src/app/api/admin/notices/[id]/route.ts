@@ -1,11 +1,14 @@
 import { updateNoticeSchema, uuidSchema } from '@/lib/validation';
 import { requireAdmin } from '@/server/auth/guards';
 import { apiHandler, ok, parseJsonBody } from '@/server/http';
+import { RATE_LIMITS, consume } from '@/server/rate-limit';
 import { archiveNotice, updateNotice } from '@/server/services/notice.service';
 
 /** PATCH /api/admin/notices/:id — edit content, or pin/unpin. */
 export const PATCH = apiHandler<{ id: string }>(async (request, { params }) => {
-  await requireAdmin();
+  const admin = await requireAdmin();
+  consume(`notice:${admin.id}`, RATE_LIMITS.write);
+
   const { id } = await params;
   const input = await parseJsonBody(request, updateNoticeSchema);
 
@@ -20,7 +23,9 @@ export const PATCH = apiHandler<{ id: string }>(async (request, { params }) => {
  * Archived notices disappear from the resident board but remain for audit.
  */
 export const DELETE = apiHandler<{ id: string }>(async (_request, { params }) => {
-  await requireAdmin();
+  const admin = await requireAdmin();
+  consume(`notice:${admin.id}`, RATE_LIMITS.write);
+
   const { id } = await params;
 
   await archiveNotice(uuidSchema.parse(id));
