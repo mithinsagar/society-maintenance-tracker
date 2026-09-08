@@ -193,22 +193,30 @@ export const COMPLAINT_SORT_FIELDS = [
   'reference',
 ] as const;
 
-export const complaintQuerySchema = paginationSchema.extend({
-  /** Free-text search across reference, title and description. */
-  q: z.string().trim().max(200).optional(),
-  status: multiEnum(COMPLAINT_STATUSES),
-  category: multiEnum(COMPLAINT_CATEGORIES),
-  priority: multiEnum(PRIORITIES),
-  /** `true` restricts to overdue, `false` excludes them, omitted means all. */
-  overdue: z
-    .enum(['true', 'false'])
-    .optional()
-    .transform((value) => (value === undefined ? undefined : value === 'true')),
-  from: z.coerce.date().optional(),
-  to: z.coerce.date().optional(),
-  sort: z.enum(COMPLAINT_SORT_FIELDS).default('createdAt'),
-  order: z.enum(['asc', 'desc']).default('desc'),
-});
+export const complaintQuerySchema = paginationSchema
+  .extend({
+    /** Free-text search across reference, title and description. */
+    q: z.string().trim().max(200).optional(),
+    status: multiEnum(COMPLAINT_STATUSES),
+    category: multiEnum(COMPLAINT_CATEGORIES),
+    priority: multiEnum(PRIORITIES),
+    /** `true` restricts to overdue, `false` excludes them, omitted means all. */
+    overdue: z
+      .enum(['true', 'false'])
+      .optional()
+      .transform((value) => (value === undefined ? undefined : value === 'true')),
+    from: z.coerce.date().optional(),
+    to: z.coerce.date().optional(),
+    sort: z.enum(COMPLAINT_SORT_FIELDS).default('createdAt'),
+    order: z.enum(['asc', 'desc']).default('desc'),
+  })
+  // Without this, a `from` after `to` reaches the SQL filter as a range that
+  // can never match anything, and the caller just sees an empty list with no
+  // indication the two dates they picked were the problem.
+  .refine((data) => !data.from || !data.to || data.from <= data.to, {
+    message: 'The "from" date must not be after the "to" date.',
+    path: ['to'],
+  });
 
 export type ComplaintQuery = z.infer<typeof complaintQuerySchema>;
 
