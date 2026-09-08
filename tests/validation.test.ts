@@ -222,6 +222,25 @@ describe('complaintQuerySchema', () => {
   it('rejects a page size above the configured maximum', () => {
     expect(complaintQuerySchema.safeParse({ pageSize: 10_000 }).success).toBe(false);
   });
+
+  it('rejects a "from" date that falls after the "to" date', () => {
+    const result = complaintQuerySchema.safeParse({ from: '2026-06-10', to: '2026-06-01' });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.map((issue) => issue.path)).toContainEqual(['to']);
+    }
+  });
+
+  it('accepts a "from" date equal to the "to" date', () => {
+    expect(
+      complaintQuerySchema.safeParse({ from: '2026-06-01', to: '2026-06-01' }).success,
+    ).toBe(true);
+  });
+
+  it('accepts either date given on its own', () => {
+    expect(complaintQuerySchema.safeParse({ from: '2026-06-01' }).success).toBe(true);
+    expect(complaintQuerySchema.safeParse({ to: '2026-06-01' }).success).toBe(true);
+  });
 });
 
 describe('uploadSignatureSchema', () => {
