@@ -6,7 +6,7 @@ A complaint lifecycle, notice board and reporting platform for residential socie
 
 ---
 
-## The 28-second version
+## Overview
 
 [![Society Maintenance Tracker — product film](docs/demo/preview.webp)](https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4)
 
