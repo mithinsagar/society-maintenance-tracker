@@ -8,9 +8,9 @@ A complaint lifecycle, notice board and reporting platform for residential socie
 
 ## The 28-second version
 
-<video src="https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4" poster="https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/poster.jpg" controls muted loop playsinline width="100%"></video>
+[![Society Maintenance Tracker — product film](docs/demo/preview.webp)](https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4)
 
-<sub>1920×1080 · 60 fps · with sound — [open the file directly](https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4) if the player does not load. Triage queue → complaint lifecycle → audit trail → derived overdue detection → notices and the email outbox → analytics → architecture. Every figure on screen is real seed data from `npm run db:seed`.</sub>
+<sub>▶ **[Watch in 1080p, 60 fps, with sound](https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4)** — the preview above is a silent, downscaled loop. The film covers the triage queue, the complaint lifecycle and its append-only audit trail, overdue detection recomputing live as the threshold changes, the notice board and email outbox, the analytics, and the four-layer architecture. Every figure on screen is real data from `npm run db:seed`.</sub>
 
 ---
 
