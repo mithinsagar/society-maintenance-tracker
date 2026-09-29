@@ -6,6 +6,14 @@ A complaint lifecycle, notice board and reporting platform for residential socie
 
 ---
 
+## The 28-second version
+
+<video src="https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4" poster="https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/poster.jpg" controls muted loop playsinline width="100%"></video>
+
+<sub>1920×1080 · 60 fps · with sound — [open the file directly](https://github.com/mithinsagar/society-maintenance-tracker/raw/master/docs/demo/society-maintenance-tracker.mp4) if the player does not load. Triage queue → complaint lifecycle → audit trail → derived overdue detection → notices and the email outbox → analytics → architecture. Every figure on screen is real seed data from `npm run db:seed`.</sub>
+
+---
+
 ## Contents
 
 - [Overview](#overview) · [Features](#features) · [Screens](#screens)
